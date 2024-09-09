@@ -62,7 +62,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-          flutter-version-file: pubspec.yaml # path to pubspec.yaml
+          flutter-version-file: hcmue/pubspec.yaml # path to pubspec.yaml
           architecture: x64
 
       # Install Dependencies
