@@ -16,9 +16,13 @@ jobs:
     outputs:
       version: ${{ steps.extract_version.outputs.version }}
     steps:
-      # Start clone from repo into macos
-      - name: Clone repository
+      # Start clone from repo hcmue into macos
+      - name: Clone src hcmue repository
         uses: actions/checkout@v4
+        with:
+          repository: datdonguyen99/hcmue
+          token: ${{ secrets.REPO_HCMUE_SECRRET }}
+          path: hcmue
 
       # Extract version
       - name: Extract version
@@ -38,14 +42,6 @@ jobs:
           distribution: temurin
           java-version: "17.x"
 
-      # Start clone from repo hcmue into macos
-      - name: Clone src hcmue repository
-        uses: actions/checkout@v4
-        with:
-          repository: datdonguyen99/hcmue
-          token: ${{ secrets.REPO_HCMUE_SECRRET }}
-          path: hcmue
-
       # Gradle cache for faster builds
       - name: Cache Gradle dependencies
         uses: actions/cache@v4
@@ -53,7 +49,7 @@ jobs:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          key: ${{ runner.os }}-gradle-${{ hashFiles('hcmue/**/*.gradle*') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
 
